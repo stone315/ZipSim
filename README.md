@@ -158,7 +158,7 @@ The **getAction** function will read 0th to 30th sensors' data. If the measured 
 
 The tangent of turning angle is equal to the ratio of (lateral speed + wind speed in y-axis) to forward speed.
 
-![equation](https://github.com/stone315/ZipSim/blob/main/pic/CodeCogsEqn8.svg)
+![equation](https://github.com/stone315/ZipSim/blob/main/pic/CodeCogsEqn.svg)
 
 ![alt text](https://github.com/stone315/ZipSim/blob/main/pic/problem3.png)
 
