@@ -66,3 +66,15 @@ Native agent and Reflex agent rely on a few assumptions.
 
 ### Path Planning (Search all objects)
 It is less important in this project because of the powerful sensors. The sensors can measure up to 255 meters object. It can cover 132 meters in width that excesses the need (50 meters). Therefore, I apply a simple scheme for this problem; The drone stay at 0.0 (y-aixs) if no unknown object is detected. If there is unknown object, it moves between -7 and 7 to identify it. The scheme is implemented in **getAction** function.
+
+![alt text](https://github.com/stone315/ZipSim/blob/main/problem1.png)
+
+### Perception (Distinguish between Tree and Delivert Site)
+
+### Decision ( Determine the timing to deploy package)
+The timing of dropping packages should hold this equation.
+
+
+
+![alt text](https://github.com/stone315/ZipSim/blob/main/problem%204.png)
+### Path Planning (Prevent the obstacles)
