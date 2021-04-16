@@ -67,12 +67,12 @@ Native agent and Reflex agent rely on a few assumptions.
 ### Path Planning (Search all objects)
 It is less important in this project because of the powerful sensors. The sensors can measure up to 255 meters object. It can cover 132 meters in width that excesses the need (50 meters). Therefore, I apply a simple scheme for this problem; The drone stay at 0.0 (y-aixs) if no unknown object is detected. If there is unknown object, it moves between -7 and 7 to identify it. The scheme is implemented in **getAction** function.
 
-![alt text](https://github.com/stone315/ZipSim/blob/main/problem1.png)
+![alt text](https://github.com/stone315/ZipSim/blob/main/pic/problem1.png)
 
 ### Perception (Distinguish between Tree and Delivert Site)
 The program performs one of the easest way to identify objects with different sizes. 
 
-![alt text](https://github.com/stone315/ZipSim/blob/main/measurement.png)
+![alt text](https://github.com/stone315/ZipSim/blob/main/pic/measurement.png)
 
 | distance      | measurement | tree (6m diameter) |  site (1 diameter) |
 | ------------- | ------------- | ------------- | ------------- | 
@@ -89,22 +89,22 @@ Since the radius of site is very small (0.5m) compared to the site's radius (5m)
 
 #### center of tree
 
-![equation](https://github.com/stone315/ZipSim/blob/main/CodeCogsEqn3.svg)
+![equation](https://github.com/stone315/ZipSim/blob/main/pic/CodeCogsEqn3.svg)
 
-![equation](https://github.com/stone315/ZipSim/blob/main/CodeCogsEqn5.svg)
+![equation](https://github.com/stone315/ZipSim/blob/main/pic/CodeCogsEqn5.svg)
 
-![equation](https://github.com/stone315/ZipSim/blob/main/CodeCogsEqn4.svg)
+![equation](https://github.com/stone315/ZipSim/blob/main/pic/CodeCogsEqn4.svg)
 
 
-![alt text](https://github.com/stone315/ZipSim/blob/main/center.png)
+![alt text](https://github.com/stone315/ZipSim/blob/main/pic/center.png)
 
 ### Decision ( Determine the timing to deploy package)
 
 The timing of dropping packages should hold this equation. The package should land between d + r and d - r. If the package requires ts time to travel to d, then the velocity should be d/ts. It can also be expressed as
 
-![equation](https://github.com/stone315/ZipSim/blob/main/CodeCogsEqn.svg)
+![equation](https://github.com/stone315/ZipSim/blob/main/pic/CodeCogsEqn.svg)
 
-![equation](https://github.com/stone315/ZipSim/blob/main/CodeCogsEqn2.svg)
+![equation](https://github.com/stone315/ZipSim/blob/main/pic/CodeCogsEqn2.svg)
 
 - d is the distance between the delivery site and the drone.
 - r is the radius of the delivery site (5m)
@@ -117,17 +117,17 @@ Although the drone may not pass the center, the equation works in most of the ca
 
 To guarantee ZIPAA, the function **boolDeploy** also check wheather a package is dropped in last 10 m.
 
-![alt text](https://github.com/stone315/ZipSim/blob/main/problem%204.png)
+![alt text](https://github.com/stone315/ZipSim/blob/main/pic/problem%204.png)
 
 ### Path Planning (Prevent the obstacles)
 
 #### Native Agent
  
-![alt text](https://github.com/stone315/ZipSim/blob/main/safeZone.png)
+![alt text](https://github.com/stone315/ZipSim/blob/main/pic/safeZone.png)
  
 #### Reflex Agent
 
-![alt text](https://github.com/stone315/ZipSim/blob/main/reflex.png)
+![alt text](https://github.com/stone315/ZipSim/blob/main/pic/reflex.png)
 
 ## More Idea
 Native agent and Reflex agent are very simple agent. Both rely on many assumptions that are impossible in the real world. There are a lot of space can improve. In here, I try to list some of the idea and possible solutions.
