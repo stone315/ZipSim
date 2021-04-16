@@ -36,7 +36,7 @@ ie.
 ```
 
 ## Summary
-In the project, the goal os to develop differenet automonous agents to meet the requirements of ZIPAA, ZAA, and more under different environmental condition.
+In the project, the goal os to develop differenet automonous agents to meet the requirements of ZIPAA, ZAA, and more under different environmental conditions.
 
 - Double-delivery rate less than 1 in 1000 flights (ZIPAA)
 - Crash rate less than 1 in 100 flights (ZAA)
