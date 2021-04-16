@@ -134,14 +134,17 @@ Native agent and Reflex agent are very simple agent. Both rely on many assumptio
 
 1. Better Path Planning
    Alougth the program works, a lot of movement is redundant. The extra movement can cause more energy/gas and also miss the delivery sites. 
+   
    **Possible solution**: graphical search algorithm (Dijkstra's algorithm, A*, or Uniform search)
 
 2. Learning agent
    When there is not enough environment information, learning agent may perform better, such as no information about the shape of tree and the size of delivery site.
+   
    **Possible solution**: Reinforment learning, Mokev Model
    
 3. measurement is not accurate and noisy + dynamic object
    In the real world, the sensor's data is more noisy that cannot perfectly measure the distance. Especially, when an object is moving, the distance can be vary. Fault is also possible to happen.
+   
    **Possible solution**: Kalman filtering, Particle filter
 
 4. Predict the wind velocity
