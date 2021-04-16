@@ -133,21 +133,25 @@ To guarantee ZIPAA, the function **boolDeploy** also check wheather a package is
 Native agent and Reflex agent are very simple agent. Both rely on many assumptions that are impossible in the real world. There are a lot of space can improve. In here, I try to list some of the idea and possible solutions.
 
 1. Better Path Planning
+
    Alougth the program works, a lot of movement is redundant. The extra movement can cause more energy/gas and also miss the delivery sites. 
    
    **Possible solution**: graphical search algorithm (Dijkstra's algorithm, A*, or Uniform search)
 
 2. Learning agent
+
    When there is not enough environment information, learning agent may perform better, such as no information about the shape of tree and the size of delivery site.
    
    **Possible solution**: Reinforment learning, Mokev Model
    
 3. measurement is not accurate and noisy + dynamic object
+
    In the real world, the sensor's data is more noisy that cannot perfectly measure the distance. Especially, when an object is moving, the distance can be vary. Fault is also possible to happen.
    
    **Possible solution**: Kalman filtering, Particle filter
 
 4. Predict the wind velocity
+
    The program treat the wind velocity as a dummy variable. However, practically, the wind can push a drone to an unwanted direct and destory the drone. Estimation of wind velocity can provide information to controller so that the controller can counter the wind velocity. 
    
    **Possible solution**: design a optimal controller and observer
