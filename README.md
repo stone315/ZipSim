@@ -70,26 +70,39 @@ It is less important in this project because of the powerful sensors. The sensor
 ![alt text](https://github.com/stone315/ZipSim/blob/main/pic/problem1.png)
 
 ### Perception (Distinguish between Tree and Delivert Site)
-The program performs one of the easest way to identify objects with different sizes. 
+The program performs one of the easest way to identify objects with different sizes. In different distance, the measurement accuracy between two points is different. For example, in 10m away, the distance between two measured point is 10m * 0.01745 = 0.1745m. Therefore, the sensors can identify an object as small as 0.1745m long. If an object has 6m diameter, 34.38 sampling points can be recorded. On the other side, a site (1m diameter) has only 5.73 sampling points. Therefore, we can identify the object based on the number of sampling points recorded in different relative distance.
+
+Conditions:
+
+To identify a tree, the number of sampling points is needed to be greater than the maximum possible number of site's sampling point.
+
+To identigy a site, the number of sampling points is needed to be less than the minimum number of tree's sampling point and it is not in the tree list.
+
+
 
 ![alt text](https://github.com/stone315/ZipSim/blob/main/pic/measurement.png)
 
-| distance      | measurement | tree (6m diameter) |  site (1 diameter) |
+| distance      | accuracy | tree (6m diameter) |  site (1m diameter) |
 | ------------- | ------------- | ------------- | ------------- | 
 | r | 0.01745r  | - | - |
 | 100 m  | 1.745m  | 3.45 sampling points | 0.5714 sampling points |
 | 50 m  | 0.872m | 6.88 sampling points | 1.1467 sampling points |
-| 25 m  | 0.436m | 1.376 sampling points | 2.25 sampling points |
+| 25 m  | 0.436m | 13.76 sampling points | 2.25 sampling points |
 | 10 m  | 0.1745m | 34.38 sampling points | 5.73 sampling points |
 
 
 
-#### center of site
+#### Center of site
 Since the radius of site is very small (0.5m) compared to the site's radius (5m), the coordinate of the sampling point is near to the center. Let the point be the center does not affect the result.
 
-#### center of tree
+#### Center of tree
+The center of tree can be found by solving a set of mathematical equations. First, the points p1 and p2 can be computed using the sensors' data and the formula ![equation](https://github.com/stone315/ZipSim/blob/main/pic/CodeCogsEqn6.svg) and ![equation](https://github.com/stone315/ZipSim/blob/main/pic/CodeCogsEqn7.svg). 
+
+Then, p3 is the mid point between p1 and p2. The coordinate of p3 can be found using mid point theorem. 
 
 ![equation](https://github.com/stone315/ZipSim/blob/main/pic/CodeCogsEqn3.svg)
+
+The points p1 and p2 are at the edge of circle. Also, the slope of p1-p2 is perpendicular to the slope of center-p3. Solving the two equations can find the center of tree.
 
 ![equation](https://github.com/stone315/ZipSim/blob/main/pic/CodeCogsEqn5.svg)
 
@@ -130,7 +143,7 @@ To guarantee ZIPAA, the function **boolDeploy** also check wheather a package is
 ![alt text](https://github.com/stone315/ZipSim/blob/main/pic/reflex.png)
 
 ## More Idea
-Native agent and Reflex agent are very simple agent. Both rely on many assumptions that are impossible in the real world. There are a lot of space can improve. In here, I try to list some of the idea and possible solutions.
+Native agent and Reflex agent are very simple agent. Both rely on many assumptions that are impossible in the real world. This project is very fun and there are a lot of space can improve. In here, I try to list some of the idea and possible solutions.
 
 1. Better Path Planning
 
