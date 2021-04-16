@@ -74,7 +74,7 @@ It is less important in this project because of the powerful sensors. The sensor
 
 ### Decision ( Determine the timing to deploy package)
 
-The timing of dropping packages should hold this equation.
+The timing of dropping packages should hold this equation. The package should land between d + r and d - r. If the package requires ts time to travel to d, then the velocity should be d/ts.
 
 ![equation](https://github.com/stone315/ZipSim/blob/main/CodeCogsEqn.svg)
 
