@@ -71,10 +71,35 @@ It is less important in this project because of the powerful sensors. The sensor
 
 ### Perception (Distinguish between Tree and Delivert Site)
 
+
 ### Decision ( Determine the timing to deploy package)
+
 The timing of dropping packages should hold this equation.
 
+![equation](https://github.com/stone315/ZipSim/blob/main/CodeCogsEqn.svg)
 
+![equation](https://github.com/stone315/ZipSim/blob/main/CodeCogsEqn2.svg)
+
+- d is the distance between the delivery site and the drone.
+- r is the radius of the delivery site (5m)
+- v is the velocity
+- x is the velocity in x-aixs (sum of lateral velocity and wind velocity)
+- y is the velocity in x-aixs (sum of forward velocity and wind velocity)
+- ts is the package's falling time ( I choose 4s for better result)
+
+Although the drone may not pass the center, the equation works in most of the cases. The function **boolDeploy** can check the validity of the equation. If the equation holds, it drops a package.
+
+To guarantee ZIPAA, the function **boolDeploy** also check wheather a package is dropped in last 10 m.
 
 ![alt text](https://github.com/stone315/ZipSim/blob/main/problem%204.png)
+
 ### Path Planning (Prevent the obstacles)
+
+#### Native Agent
+
+#### Reflex Agent
+
+## Review
+### Pros
+### Cons
+## More Idea
