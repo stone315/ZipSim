@@ -51,10 +51,10 @@ The problem can be broken down to four main subproblems:
 
 1. Path Planning (Search all objects)
 2. Perception (Distinguish between Tree and Delivert Site)
-3. Path Planning (Prevent the obstacles)
+3. Path Planning (avoid the obstacles)
 4. Decision ( Determine the timing to deploy package)
 
-Native agent and Reflex agent use the same methods to solve probem 1.,2.,4. However, they use different methods to prevent the obstacles. The Native agent relies on pre-calcualtion result that it plans the path using the map gererated from the perceoption. Instead, Reflex agent uses the real time data to find out the safe path which may cost more energy for the extre movement. 
+Native agent and Reflex agent use the same methods to solve probem 1.,2.,4. However, they use different methods to avoid the obstacles. The Native agent relies on pre-calcualtion result that it plans the path using the map gererated from the perceoption. Instead, Reflex agent uses the real time data to find out the safe path which may cost more energy for the extre movement. 
 
 ### Assumption
 Native agent and Reflex agent rely on a few assumptions.
@@ -70,7 +70,7 @@ It is less important in this project because of the powerful sensors. The sensor
 ![alt text](https://github.com/stone315/ZipSim/blob/main/pic/problem1.png)
 
 ### Perception (Distinguish between Tree and Delivert Site)
-The program performs one of the easest way to identify objects with different sizes. In different distance, the measurement accuracy between two points is different. For example, in 10m away, the distance between two measured point is 10m * 0.01745 = 0.1745m. Therefore, the sensors can identify an object as small as 0.1745m long. If an object has 6m diameter, 34.38 sampling points can be recorded. On the other side, a site (1m diameter) has only 5.73 sampling points. Therefore, we can identify the object based on the number of sampling points recorded in different relative distance.
+The program performs one of the easest way to identify objects with different sizes. In different distance, the measurement accuracy between two points is different. For example, in 10m away, the distance between two measured point is 10m * 0.01745 = 0.1745m. Therefore, the sensors can identify an object as small as 0.1745m long. If an object has 6m diameter, 34.38 sampling points can be recorded. On the other side, a site (1m diameter) has only 5.73 sampling points. Therefore, we can identify the object based on the number of sampling points recorded in different relative distance. The implementation is in **identigyObject** function
 
 Conditions:
 
@@ -132,15 +132,35 @@ To guarantee ZIPAA, the function **boolDeploy** also check wheather a package is
 
 ![alt text](https://github.com/stone315/ZipSim/blob/main/pic/problem%204.png)
 
-### Path Planning (Prevent the obstacles)
+### Path Planning (Avoid the obstacles)
 
 #### Native Agent
  
+The Native Agent decides the path based on information of the trees' locations, and the delivery site's locations. The locations are detected by the **identifyobject** function and stored in self.unknown, self.trees and self.delivery_site list. The motion action is determined in the **getAction** function.
+
+First, the **getAction** function sorts the self.unknown and self.trees and chooses the closest object (comparing the vertical distances) as the target position. Then, check whether the current position is in dangerous zone or not. There are three different cases.
+
+1. It is in safe zone. Then, find the safe position that is closed to target, like the right figure below.
+2. It is near the dangerous zone but the front sensor (sample[15]) do not detect obstacle. Then, move forward only.
+3. It is in dangerous zone. Then, find the closed safe position and move toward the position, like the left figure below.
+ 
+This native agent cannot avoid some of the obstacles. The primary reason is that the computed center of trees has error. The error can be up to 3m that can affect the correctness of plan. 
+
+
 ![alt text](https://github.com/stone315/ZipSim/blob/main/pic/safeZone.png)
  
 #### Reflex Agent
+The Reflex Agent has much better performance than Native Agent in respect to the crash prevention. It is due to the relfex agent relying on the current sensing data to make the safest action.
+
+The **getAction** function will read 0th to 30th sensors' data. If the measured distance is less than 30m, then it is possible to hit in next 1s, so it is not safe. After finding out the safe angles, the **getAction** function will choose the a lowest turning angle as target angle.
 
 ![alt text](https://github.com/stone315/ZipSim/blob/main/pic/reflex.png)
+
+The tangent of turning angle is equal to the ratio of (lateral speed + wind speed in y-axis) to forward speed.
+
+![equation](https://github.com/stone315/ZipSim/blob/main/pic/CodeCogsEqn8.svg)
+
+![alt text](https://github.com/stone315/ZipSim/blob/main/pic/problem3.png)
 
 ## More Idea
 Native agent and Reflex agent are very simple agent. Both rely on many assumptions that are impossible in the real world. This project is very fun and there are a lot of space can improve. In here, I try to list some of the idea and possible solutions.
