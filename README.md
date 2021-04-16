@@ -70,7 +70,33 @@ It is less important in this project because of the powerful sensors. The sensor
 ![alt text](https://github.com/stone315/ZipSim/blob/main/problem1.png)
 
 ### Perception (Distinguish between Tree and Delivert Site)
+The program performs one of the easest way to identify objects with different sizes. 
 
+![alt text](https://github.com/stone315/ZipSim/blob/main/measurement.png)
+
+| distance      | measurement | tree (6m diameter) |  site (1 diameter) |
+| ------------- | ------------- | ------------- | ------------- | 
+| r | 0.01745r  | - | - |
+| 100 m  | 1.745m  | 3.45 sampling points | 0.5714 sampling points |
+| 50 m  | 0.872m | 6.88 sampling points | 1.1467 sampling points |
+| 25 m  | 0.436m | 1.376 sampling points | 2.25 sampling points |
+| 10 m  | 0.1745m | 34.38 sampling points | 5.73 sampling points |
+
+
+
+#### center of site
+Since the radius of site is very small (0.5m) compared to the site's radius (5m), the coordinate of the sampling point is near to the center. Let the point be the center does not affect the result.
+
+#### center of tree
+
+![equation](https://github.com/stone315/ZipSim/blob/main/CodeCogsEqn3.svg)
+
+![equation](https://github.com/stone315/ZipSim/blob/main/CodeCogsEqn5.svg)
+
+![equation](https://github.com/stone315/ZipSim/blob/main/CodeCogsEqn4.svg)
+
+
+![alt text](https://github.com/stone315/ZipSim/blob/main/center.png)
 
 ### Decision ( Determine the timing to deploy package)
 
@@ -96,8 +122,12 @@ To guarantee ZIPAA, the function **boolDeploy** also check wheather a package is
 ### Path Planning (Prevent the obstacles)
 
 #### Native Agent
-
+ 
+![alt text](https://github.com/stone315/ZipSim/blob/main/safeZone.png)
+ 
 #### Reflex Agent
+
+![alt text](https://github.com/stone315/ZipSim/blob/main/reflex.png)
 
 ## More Idea
 Native agent and Reflex agent are very simple agent. Both rely on many assumptions that are impossible in the real world. There are a lot of space can improve. In here, I try to list some of the idea and possible solutions.
